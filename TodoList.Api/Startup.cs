@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using TodoList.Api.Core.Attributes;
 using TodoList.Api.Core.Configurations;
+using TodoList.Api.Core.Middlewares;
 using TodoList.Domain.Configuration;
 
 namespace TodoList.Api
@@ -74,6 +75,9 @@ namespace TodoList.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // catch errors
+            app.UseMiddleware<ErrorHandlerMiddleware>();
 
             app.UseMvc();
         }

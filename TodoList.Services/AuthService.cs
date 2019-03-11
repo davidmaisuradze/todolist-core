@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -11,16 +10,16 @@ using TodoList.Domain.Configuration;
 using TodoList.Domain.Entities;
 using TodoList.Domain.Interfaces;
 using TodoList.Domain.Interfaces.Services;
-using TodoList.Domain.Models.User;
+using TodoList.Domain.Models.Auth;
 
 namespace TodoList.Services
 {
-    public class UserService : IUserService
+    public class AuthService : IAuthService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly AppSettings _appSettings;
 
-        public UserService(IOptions<AppSettings> appSettings, IUnitOfWork unitOfWork)
+        public AuthService(IOptions<AppSettings> appSettings, IUnitOfWork unitOfWork)
         {
             _appSettings = appSettings.Value;
             _unitOfWork = unitOfWork;
@@ -108,7 +107,8 @@ namespace TodoList.Services
                 Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
-            var token = tokenHandler.CreateToken(tokenDescriptor).ToString();
+            var createdToken = tokenHandler.CreateToken(tokenDescriptor);
+            var token = tokenHandler.WriteToken(createdToken);
 
             return token;
         }
@@ -118,7 +118,7 @@ namespace TodoList.Services
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
             {
                 passwordSalt = hmac.Key;
-                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
             }
         }
 

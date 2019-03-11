@@ -17,71 +17,36 @@ namespace TodoList.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            try
-            {
-                var result = _taskService.GetTasks();
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
+            var result = _taskService.GetTasks();
+            return Ok(result);
         }
 
         [HttpPost]
         public IActionResult Post([FromBody] CreateTaskRequest model)
         {
-            try
-            {
-                var result = _taskService.CreateTask(model);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
+            var result = _taskService.CreateTask(model);
+            return Ok(result);
         }
 
         [HttpPut]
         public IActionResult Put([FromBody] UpdateTaskRequest model)
         {
-            try
-            {
-                var result = _taskService.UpdateTask(model);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
+            var result = _taskService.UpdateTask(model);
+            return Ok(result);
         }
 
         [HttpPut("assignTask")]
         public IActionResult AssignTask([FromBody] AssignTaskToUserRequest model)
         {
-            try
-            {
-                var result = _taskService.AssignTaskToUser(model);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
+            var result = _taskService.AssignTaskToUser(model);
+            return Ok(result);
         }
 
         [HttpDelete(":taskId")]
         public IActionResult Delete(int taskId)
         {
-            try
-            {
-                var result = _taskService.DeleteTask(taskId);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
+            var result = _taskService.DeleteTask(taskId);
+            return Ok(result);
         }
     }
 }

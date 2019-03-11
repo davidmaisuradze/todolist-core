@@ -1,10 +1,7 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
-namespace TodoList.Domain.Models.User
+namespace TodoList.Domain.Models.Auth
 {
     public class LoginRequest
     {

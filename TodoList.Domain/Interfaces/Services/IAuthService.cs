@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TodoList.Domain.Models.User;
+﻿using System.Collections.Generic;
+using TodoList.Domain.Models.Auth;
 
 namespace TodoList.Domain.Interfaces.Services
 {
-    public interface IUserService
+    public interface IAuthService
     {
         IEnumerable<UserModel> GetUsers();
         AuthenticationResponse Login(LoginRequest model);

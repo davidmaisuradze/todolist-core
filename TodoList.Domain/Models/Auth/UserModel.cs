@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace TodoList.Domain.Models.User
+namespace TodoList.Domain.Models.Auth
 {
     public class UserModel
     {

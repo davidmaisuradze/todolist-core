@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 
-namespace TodoList.Domain.Models.User
+namespace TodoList.Domain.Models.Auth
 {
     public class RegisterRequest
     {

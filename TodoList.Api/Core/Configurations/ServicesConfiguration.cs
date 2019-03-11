@@ -1,9 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TbcIns.Services.Claims.Repository;
+using TodoList.Data;
 using TodoList.Data.Repositories;
 using TodoList.Domain.Interfaces;
 using TodoList.Domain.Interfaces.Repositories;
@@ -18,7 +14,7 @@ namespace TodoList.Api.Core.Configurations
         {
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ITaskService, TaskService>();
 
             return services;

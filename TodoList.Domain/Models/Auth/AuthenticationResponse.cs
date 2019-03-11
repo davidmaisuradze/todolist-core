@@ -1,9 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace TodoList.Domain.Models.User
+namespace TodoList.Domain.Models.Auth
 {
     public class AuthenticationResponse
     {

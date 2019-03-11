@@ -1,12 +1,10 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Storage;
+﻿using TodoList.Data.Database;
 using TodoList.Data.Repositories;
 using TodoList.Domain.Entities;
 using TodoList.Domain.Interfaces;
 using TodoList.Domain.Interfaces.Repositories;
-using TodoList.Repositories.Database;
 
-namespace TbcIns.Services.Claims.Repository
+namespace TodoList.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
