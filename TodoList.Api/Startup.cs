@@ -25,6 +25,9 @@ namespace TodoList.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // enable cors
+            services.AddCors();
+
             // to disable automatic model validation
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -75,6 +78,12 @@ namespace TodoList.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // global cors policy
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             // catch errors
             app.UseMiddleware<ErrorHandlerMiddleware>();

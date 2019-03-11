@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using TodoList.Domain.Interfaces.Services;
 using TodoList.Domain.Models.Task;
 
 namespace TodoList.Api.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     public class TaskController : Controller
     {
@@ -42,7 +45,7 @@ namespace TodoList.Api.Controllers
             return Ok(result);
         }
 
-        [HttpDelete(":taskId")]
+        [HttpDelete("{taskId}")]
         public IActionResult Delete(int taskId)
         {
             var result = _taskService.DeleteTask(taskId);

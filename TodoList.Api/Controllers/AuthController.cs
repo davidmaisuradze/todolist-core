@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using TodoList.Domain.Interfaces.Services;
 using TodoList.Domain.Models.Auth;
 
@@ -14,6 +17,19 @@ namespace TodoList.Api.Controllers
             _authService = authService;
         }
 
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Route("currentUser")]
+        public IActionResult GetCurrentUser()
+        {
+            var currentUser = new CurrentUserModel
+            {
+                Email = User.FindFirst(ClaimTypes.Email)?.Value
+
+            };
+            return Ok(currentUser);
+        }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet]
         public IActionResult GetAll()
         {

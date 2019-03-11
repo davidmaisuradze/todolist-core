@@ -32,11 +32,13 @@ namespace TodoList.Api.Core.Middlewares
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int) HttpStatusCode.BadRequest;
 
-            return context.Response.WriteAsync(new ErrorDetails
+            return context.Response.WriteAsync(exception.Message);
+            // NOTE: tu damatebiti informaciis gataneba gvinda error shi chveni klasi shegvidzlia avgwerot
+            /*return context.Response.WriteAsync(new ErrorDetails
             {
                 StatusCode = context.Response.StatusCode,
                 Error = exception.Message
-            }.ToString());
+            }.ToString());*/
         }
     }
 }

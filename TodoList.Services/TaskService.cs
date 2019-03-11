@@ -40,7 +40,7 @@ namespace TodoList.Services
             var checkTask = _unitOfWork.Tasks.FindOne(x => x.Title == model.Title);
             if (checkTask != null)
             {
-                throw new Exception("task already exists");
+                throw new Exception("such task already exists");
             }
 
             var taskEntity = new TaskEntity

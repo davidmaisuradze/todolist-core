@@ -47,10 +47,10 @@ namespace TodoList.Services
 
             // check password
             if (!verifyPasswordHash(model.Password, user.PasswordHash, user.PasswordSalt))
-                return null;
+                throw new Exception("password is incorrect");
 
             // generate jwt token
-            var token = generateJwtToken(user.Email);
+            var token = generateJwtToken(user);
 
             var authenticationResponse = new AuthenticationResponse
             {
@@ -92,9 +92,8 @@ namespace TodoList.Services
             return true;
         }
 
-
         #region private methods
-        private string generateJwtToken(string email)
+        private string generateJwtToken(UserEntity user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.SecretKey);
@@ -102,7 +101,7 @@ namespace TodoList.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, email)
+                    new Claim(ClaimTypes.Email, user.Email)
                 }),
                 Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

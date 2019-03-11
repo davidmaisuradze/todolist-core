@@ -7,6 +7,7 @@ namespace TodoList.Domain.Models.Auth
     {
         [JsonProperty("email")]
         [Required]
+        [EmailAddress(ErrorMessage = "email address invalid format")]
 
         public string Email { get; set; }
 

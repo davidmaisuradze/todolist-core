@@ -9,7 +9,7 @@ namespace TodoList.Api.Core.Attributes
         {
             if (!context.ModelState.IsValid)
             {
-                throw new Exception("invalid model");
+                throw new Exception("validation error");
             }
         }
     }
